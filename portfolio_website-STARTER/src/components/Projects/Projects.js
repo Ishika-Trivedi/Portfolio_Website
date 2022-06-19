@@ -4,10 +4,47 @@ import { BlogCard, CardInfo, ExternalLinks, GridContainer, HeaderThree, Hr, Tag,
 import { Section, SectionDivider, SectionTitle } from '../../styles/GlobalComponents';
 import { projects } from '../../constants/constants';
 
+// const ProjectsDemo =[{
+//   title: "Project 1 ",
+//   description: "This is the longest description."
+// },{
+//   title: "Project 2 ",
+// description: "This is the longest description."
+// }]
+
+// already constant is created that can be imported here.
+
 const Projects = () => (
-  <div>
-    Projects
-  </div>
+  <Section nopadding id="projects">
+    <SectionDivider />
+    <SectionTitle main>Projects</SectionTitle>
+    <GridContainer>
+      {/* {ProjectsDemo.map((project)=>( */}
+          {projects.map(({id,image,title,description,tags,source,visit}) => (
+        <BlogCard key={id}>
+          <Img src={image} />
+          <TitleContent>
+            <HeaderThree title>{title}</HeaderThree>
+            <Hr />
+          </TitleContent>
+          <CardInfo>{description}</CardInfo>
+          <div>
+            <Hr />
+            <TitleContent>Stack</TitleContent>
+            <TagList>
+              {tags.map((tag,i)=>(
+                <Tag key={i}>{tag}</Tag>
+              ))}
+            </TagList>
+          </div>
+          <UtilityList>
+            <ExternalLinks href={visit}>Code</ExternalLinks>
+            <ExternalLinks href={source}>Source</ExternalLinks>
+          </UtilityList>
+        </BlogCard>
+      ))}
+    </GridContainer>
+  </Section>
 );
 
 export default Projects;
